@@ -2,12 +2,13 @@
 
 #include<iosfwd>
 #include <string>
-#include "AtEnginEnumFuncs.h"
+#include "AtEngineEnumFuncs.h"
+#include "AtEngineStructFuncs.h"
 
 
 using namespace std;
 
-namespace AtEngin
+namespace AtEngine
 {
     // 1. Reads a positive number from the user
     /**
@@ -304,6 +305,41 @@ namespace AtEngin
             cin >> number;
         }
         return number;
+    }
+
+    // 16. Calculates the total task duration in seconds using user input
+    /**
+     * @brief Calculates the total task duration in seconds using user input.
+     * @return The total duration in seconds based on user input.
+     */
+    int taskDurationInSeconds()
+    {
+        AtEngineStructs::stTaskDuration taskDuration = AtEngineStructFuncs::getTaskDurationInput();
+
+        int durationInSeconds = 0;
+        durationInSeconds = taskDuration.numberOfDays * 24 * 60 * 60;
+        durationInSeconds += taskDuration.numberOfHours * 60 * 60;
+        durationInSeconds += taskDuration.numberOfMinutes * 60;
+        durationInSeconds += taskDuration.numberOfSeconds;
+
+        return durationInSeconds;
+    }
+
+    // 17. Calculates the total task duration in seconds using provided data
+    /**
+     * @brief Calculates the total task duration in seconds using provided data.
+     * @param taskDuration The stTaskDuration struct containing days, hours, minutes, and seconds.
+     * @return The total duration in seconds based on the provided data.
+     */
+    int taskDurationInSeconds(AtEngineStructs::stTaskDuration taskDuration)
+    {
+        int durationInSeconds = 0;
+        durationInSeconds = taskDuration.numberOfDays * 24 * 60 * 60;
+        durationInSeconds += taskDuration.numberOfHours * 60 * 60;
+        durationInSeconds += taskDuration.numberOfMinutes * 60;
+        durationInSeconds += taskDuration.numberOfSeconds;
+
+        return durationInSeconds;
     }
 
 }
