@@ -342,4 +342,49 @@ namespace AtEngine
         return durationInSeconds;
     }
 
+    // 18. Function to print the details of a task duration with a custom delimiter
+    /**
+     * @brief Prints the task duration details in the format: days:hours:minutes:seconds.
+     * Allows customization of the delimiter between the time components.
+     * @param taskDuration The stTaskDuration struct containing days, hours, minutes, and seconds.
+     * @param delimiter The character to separate days, hours, minutes, and seconds (default is ':').
+     */
+    void printTaskDurationDetails(AtEngineStructs::stTaskDuration taskDuration, char delimiter = ':')
+    {
+        cout << "\n";
+        cout << taskDuration.numberOfDays << delimiter
+            << taskDuration.numberOfHours << delimiter
+            << taskDuration.numberOfMinutes << delimiter
+            << taskDuration.numberOfSeconds << "\n";
+    }
+
+    // 19. Function to return the name of the day of the week
+    /**
+     * @brief Returns the name of the day of the week based on the provided enDayOfWeek enum value.
+     * @param day The enDayOfWeek enum value representing the day of the week.
+     * @return A string representing the name of the day (e.g., "Sunday", "Monday").
+     */
+    string getDayOfWeek(AtEngineEnums::enDayOfWeek day)
+    {
+        switch (day)
+        {
+        case AtEngineEnums::enDayOfWeek::SUNDAY:
+            return "Sunday";
+        case AtEngineEnums::enDayOfWeek::MONDAY:
+            return "Monday";
+        case AtEngineEnums::enDayOfWeek::TUESDAY:
+            return "Tuesday";
+        case AtEngineEnums::enDayOfWeek::WEDNESDAY:
+            return "Wednesday";
+        case AtEngineEnums::enDayOfWeek::THURSDAY:
+            return "Thursday";
+        case AtEngineEnums::enDayOfWeek::FRIDAY:
+            return "Friday";
+        case AtEngineEnums::enDayOfWeek::SATURDAY:
+            return "Saturday ";
+        default:
+            return "Not a valid Day";
+        }
+    }
+
 }
