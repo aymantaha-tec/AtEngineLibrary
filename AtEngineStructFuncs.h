@@ -85,4 +85,31 @@ namespace AtEngineStructFuncs {
 
         return taskDuration;
     };
+
+    // 4. Function to convert total seconds to task duration
+    /**
+     * @brief Converts a total number of seconds to a stTaskDuration structure.
+     * This function takes an integer representing a total number of seconds
+     * and converts it into a stTaskDuration structure, which contains the equivalent
+     * number of days, hours, minutes, and seconds.
+     * @param TotalSeconds The total number of seconds to convert.
+     * @return A stTaskDuration structure containing the converted time values.
+     */
+    AtEngineStructs::stTaskDuration SecondsToTaskDuration(int totalSeconds)
+    {
+        AtEngineStructs::stTaskDuration taskDuration;
+        const int secondsPerDay = 24 * 60 * 60;
+        const int secondsPerHour = 60 * 60;
+        const int secondsPerMinute = 60;
+
+        int remainder = 0;
+        taskDuration.numberOfDays = floor(totalSeconds / secondsPerDay);
+        remainder = totalSeconds % secondsPerDay;
+        taskDuration.numberOfHours = floor(remainder / secondsPerHour);
+        remainder = remainder % secondsPerHour;
+        taskDuration.numberOfMinutes = floor(remainder / secondsPerMinute);
+        remainder = remainder % secondsPerMinute;
+        taskDuration.numberOfSeconds = remainder;
+        return taskDuration;
+    }
 }
