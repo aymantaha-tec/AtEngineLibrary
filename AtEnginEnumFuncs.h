@@ -1,9 +1,15 @@
 #pragma once
 
 #include<iostream>
-#include "AtEnginEnums.h"
+#include "AtEngineEnums.h"
 
 using namespace std;
+
+// Forward declaration for the AtEngine namespace
+namespace AtEngine {
+
+    int readIntegerOfRange(int from, int to);
+}
 
 namespace AtEngineEnumFuncs
 
@@ -36,7 +42,7 @@ namespace AtEngineEnumFuncs
         return (AtEngineEnums::enOperationType)ot;
     };
 
-    // 5. Checks if a number is prime or non-prime
+    // 3. Checks if a number is prime or non-prime
     /**
      * @brief Checks if a number is prime or non-prime.
      * @param number The number to check.
@@ -57,4 +63,14 @@ namespace AtEngineEnumFuncs
         return AtEngineEnums::enNumberPrimeStatus::PRIME;
     
     };
+
+    // 4. Reads a day of the week as an enum value
+    /**
+     * @brief Reads a day of the week as an enum value.
+     * @return enDayOfWeek corresponding to the integer input (1 for Sunday, 7 for Saturday).
+     */
+    AtEngineEnums::enDayOfWeek readDayOfWeek()
+    {
+        return (AtEngineEnums::enDayOfWeek) AtEngine::readIntegerOfRange(1, 7);
+    }
 }
