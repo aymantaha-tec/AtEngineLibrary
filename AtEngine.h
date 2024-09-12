@@ -16,7 +16,7 @@ namespace AtEngine
      * @param Message The message to display to the user.
      * @return The positive number entered by the user.
      */
-    int readPositiveNumber(const string& Message) {
+    int readPositiveNumber(const string& Message = "Please enter a positive number?") {
         int Number;
         cout << Message << endl;
         cin >> Number;
@@ -123,7 +123,36 @@ namespace AtEngine
         }
     }
 
-    // 9. Prints a range of numbers in ascending or descending order with a specific number type
+    // 9. Validates the range and the values
+    /**
+     * @brief Validates the range and the values.
+     *
+     * This function checks if the range is valid and if the values are within the integer limits.
+     *
+     * @param start The starting value of the range.
+     * @param finish The ending value of the range.
+     * @return true if the values are valid, false otherwise.
+     *
+     * @note This is function number 26 in the library.
+     */
+    bool validateRange(int start, int finish) {
+        // Validate input
+        if (finish < start) {
+            cout << "Invalid range: finish should be greater than or equal to start for ascending order, or vice versa for descending order.\n";
+            return false;
+        }
+
+        // Check if values are within valid integer range
+        if (std::numeric_limits<int>::min() > start || start > std::numeric_limits<int>::max() ||
+            std::numeric_limits<int>::min() > finish || finish > std::numeric_limits<int>::max()) {
+            cout << "Input values are outside the valid range of integers.\n";
+            return false;
+        }
+
+        return true;
+    }
+
+    // 10. Prints a range of numbers in ascending or descending order with a specific number type
     /**
     * @brief Prints a range of numbers in ascending or descending order with a specific number type.
     * @param start The starting number to print. Defaults to 1.
@@ -141,17 +170,9 @@ namespace AtEngine
     */
     void printNumberRange(int start, int finish, bool ascending = true, AtEngineEnums::enNumberParityIncludeAll numberParityIncludeAll = AtEngineEnums::enNumberParityIncludeAll::ALL) {
 
-        // Validate input
-        if (finish < start) {
-            cout << "Invalid range: finish should be greater than or equal to start for ascending order, or vice versa for descending order.\n";
-            return;
-        }
-
-        // Check if values are within valid integer range
-        if (std::numeric_limits<int>::min() > start || start > std::numeric_limits<int>::max() ||
-            std::numeric_limits<int>::min() > finish || finish > std::numeric_limits<int>::max()) {
-            std::cout << "Input values are outside the valid range of integers.\n";
-            return;
+        // Validate the range
+        if (!validateRange(start, finish)) {
+            return; // Exit if validation fails
         }
 
         cout << "Range printed :\n";
@@ -189,7 +210,7 @@ namespace AtEngine
         }
     }
     
-    // 10. Sums the odd numbers from 1 to N
+    // 11. Sums the odd numbers from 1 to N
     /**
     * @brief Sums the odd numbers from 1 to N.
     * @param n The upper bound of the range.
@@ -206,7 +227,7 @@ namespace AtEngine
         return Sum;
     }
 
-    // 11. Sums the even numbers from 1 to N
+    // 12. Sums the even numbers from 1 to N
     /**
     * @brief Sums the even numbers from 1 to N.
     * @param n The upper bound of the range.
@@ -223,7 +244,7 @@ namespace AtEngine
         return Sum;
     }
 
-    // 12. Calculates the factorial of N
+    // 13. Calculates the factorial of N
     /**
     * @brief Calculates the factorial of N.
     * @param N The number to calculate the factorial for.
@@ -237,7 +258,7 @@ namespace AtEngine
         return F;
     }
 
-    // 13. Calculates the power of a number raised to a specified exponent
+    // 14. Calculates the power of a number raised to a specified exponent
     /**
      * @brief Calculates the power of a number raised to a specified exponent.
      * @param number The base number.
@@ -256,7 +277,7 @@ namespace AtEngine
         return power;
     }
 
-    // 14. Reads an integer from user input within a specified range
+    // 15. Reads an integer from user input within a specified range
     /**
      * @brief Reads an integer from user input until it is within a specified range.
      * @param from The minimum acceptable value.
@@ -288,7 +309,7 @@ namespace AtEngine
         return number;
     }
 
-    // 15. Reads a float from the user with a custom message
+    // 16. Reads a float from the user with a custom message
     /**
      * @brief Reads a float from the user with a custom message.
      * @param message The message to display to the user.
@@ -307,7 +328,7 @@ namespace AtEngine
         return number;
     }
 
-    // 16. Calculates the total task duration in seconds using user input
+    // 17. Calculates the total task duration in seconds using user input
     /**
      * @brief Calculates the total task duration in seconds using user input.
      * @return The total duration in seconds based on user input.
@@ -325,7 +346,7 @@ namespace AtEngine
         return durationInSeconds;
     }
 
-    // 17. Calculates the total task duration in seconds using provided data
+    // 18. Calculates the total task duration in seconds using provided data
     /**
      * @brief Calculates the total task duration in seconds using provided data.
      * @param taskDuration The stTaskDuration struct containing days, hours, minutes, and seconds.
@@ -342,7 +363,7 @@ namespace AtEngine
         return durationInSeconds;
     }
 
-    // 18. Function to print the details of a task duration with a custom delimiter
+    // 19. Function to print the details of a task duration with a custom delimiter
     /**
      * @brief Prints the task duration details in the format: days:hours:minutes:seconds.
      * Allows customization of the delimiter between the time components.
@@ -358,7 +379,7 @@ namespace AtEngine
             << taskDuration.numberOfSeconds << "\n";
     }
 
-    // 19. Function to return the name of the day of the week
+    // 20. Function to return the name of the day of the week
     /**
      * @brief Returns the name of the day of the week based on the provided enDayOfWeek enum value.
      * @param day The enDayOfWeek enum value representing the day of the week.
@@ -384,6 +405,145 @@ namespace AtEngine
             return "Saturday ";
         default:
             return "Not a valid Day";
+        }
+    }
+
+    // 21. Function to return the name of the month of the year
+    /**
+     * @brief Returns the name of the month of the year based on the provided enMonthOfYear enum value.
+     * @param month The enMonthOfYear enum value representing the month of the year.
+     * @return A string representing the name of the month (e.g., "January", "February").
+     */
+    string getMonthOfYear(AtEngineEnums::enMonthOfYear month)
+    {
+        switch (month)
+        {
+        case AtEngineEnums::enMonthOfYear::JANUARY:
+            return "January";
+        case AtEngineEnums::enMonthOfYear::FEBRUARY:
+            return "February";
+        case AtEngineEnums::enMonthOfYear::MARCH:
+            return "March";
+        case AtEngineEnums::enMonthOfYear::APRIL:
+            return "April";
+        case AtEngineEnums::enMonthOfYear::MAY:
+            return "May";
+        case AtEngineEnums::enMonthOfYear::JUNE:
+            return "June";
+        case AtEngineEnums::enMonthOfYear::JULY:
+            return "July";
+        case AtEngineEnums::enMonthOfYear::AUGUST:
+            return "August";
+        case AtEngineEnums::enMonthOfYear::SEPTEMBER:
+            return "September";
+        case AtEngineEnums::enMonthOfYear::OCTOBER:
+            return "October";
+        case AtEngineEnums::enMonthOfYear::NOVEMBER:
+            return "November";
+        case AtEngineEnums::enMonthOfYear::DECEMBER:
+            return "December";
+        default:
+            return "Not a vaild Month";
+        }
+    }
+
+    // 22. Prints a range of prime numbers in ascending or descending order with a specific number type
+    /**
+     * @brief Prints a range of prime numbers in ascending or descending order with a specific number type.
+     * @param start The starting number to print. Defaults to 1.
+     * @param finish The ending number to print.
+     * @param ascending If true, prints numbers in ascending order; otherwise, prints in descending order. Defaults to true.
+     * @param numberParityIncludeAll Specifies if all prime numbers, odd prime numbers, or even prime numbers should be printed. Defaults to All.
+     *
+     * @details This function prints prime numbers from the specified `start` to `finish` in either ascending or descending order,
+     * based on the `ascending` parameter. The `numberParityIncludeAll` parameter determines which type of prime numbers are printed:
+     * - `ALL` prints all prime numbers in the range.
+     * - `ODD` prints only odd prime numbers.
+     * - `EVEN` prints only even prime numbers.
+     *
+     * @note This function handles invalid ranges by printing an error message and returning without printing any numbers.
+     */
+    void printPrimeNumberInRange(int start, int finish, bool ascending = true, AtEngineEnums::enNumberParityIncludeAll numberParityIncludeAll = AtEngineEnums::enNumberParityIncludeAll::ALL)
+    {
+        // Validate the range
+        if (!validateRange(start, finish)) {
+            return; // Exit if validation fails
+        }
+
+        // Print header based on type
+        switch (numberParityIncludeAll) {
+        case AtEngineEnums::enNumberParityIncludeAll::ALL:
+            cout << "All prime numbers:\n";
+            break;
+        case AtEngineEnums::enNumberParityIncludeAll::ODD:
+            cout << "Odd prime numbers:\n";
+            break;
+        case AtEngineEnums::enNumberParityIncludeAll::EVEN:
+            cout << "Even prime numbers:\n";
+            break;
+        }
+
+        // Helper lambda for printing if number is prime and matches the parity condition
+        auto printIfPrimeAndValidParity = [&](int num) {
+            if (AtEngineEnumFuncs::checkPrime(num) == AtEngineEnums::enNumberPrimeStatus::PRIME) {
+                if (numberParityIncludeAll == AtEngineEnums::enNumberParityIncludeAll::ALL ||
+                    (numberParityIncludeAll == AtEngineEnums::enNumberParityIncludeAll::ODD && num % 2 != 0) ||
+                    (numberParityIncludeAll == AtEngineEnums::enNumberParityIncludeAll::EVEN && num == 2)) {
+                    cout << num << endl;
+                }
+            }
+            };
+
+        // Ascending or descending order
+        if (ascending) {
+            for (int counter = start; counter <= finish; counter++) {
+                printIfPrimeAndValidParity(counter);
+            }
+        }
+        else {
+            for (int counter = finish; counter >= start; counter--) {
+                printIfPrimeAndValidParity(counter);
+            }
+        }
+    }
+
+    // 23. Check if a number is perfect
+    /**
+     * @brief Determines if a given number is a perfect number by using the perfectNumberStatus function.
+     *
+     * A perfect number is a positive integer that is equal to the sum of its proper positive divisors.
+     * This function calls the perfectNumberStatus function to determine if the number is perfect.
+     *
+     * @param number The number to check.
+     * @return true if the number is perfect, false otherwise.
+     *
+     * @note This function relies on the perfectNumberStatus function to determine the result.
+     *       It returns true if the status is PERFECT and false otherwise.
+     */
+    bool isPerfectNumber(int number) {
+        return AtEngineEnumFuncs::perfectNumberStatus(number) == AtEngineEnums::enPerfectNumberStatus::PERFECT;
+    }
+
+    // 23. Prints all perfect numbers within a specified range.
+    /**
+     * @brief Prints all perfect numbers within a specified range.
+     *
+     * This function iterates through numbers from 'start' to 'finish' and prints those that are perfect numbers.
+     *
+     * @param start The starting value of the range (inclusive).
+     * @param finish The ending value of the range (inclusive).
+     */
+    void printAllPerfectNumberInRange(int start, int finish) {
+        if (!validateRange(start, finish)) {
+            return; // Exit if validation fails
+        }
+
+        if (start <= 0) start = 1; // Ensure the starting value is positive
+
+        for (int i = start; i <= finish; i++) {
+            if (i > 1 && AtEngine::isPerfectNumber(i)) { // Ignore 1, as it's not a perfect number
+                cout << i << endl;
+            }
         }
     }
 
