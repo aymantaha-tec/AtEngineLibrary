@@ -73,4 +73,52 @@ namespace AtEngineEnumFuncs
     {
         return (AtEngineEnums::enDayOfWeek) AtEngine::readIntegerOfRange(1, 7);
     }
+
+    // 5. Reads a month of the year as an enum value
+    /**
+     * @brief Reads a month of the year as an enum value.
+     * @return enMonthOfYear corresponding to the integer input (1 for January, 12 for December).
+     */
+    AtEngineEnums::enMonthOfYear readMonthOfYear()
+    {
+        return (AtEngineEnums::enMonthOfYear)AtEngine::readIntegerOfRange(1, 12);
+    }
+
+    // 6. Check if a number is a perfect number
+    /**
+     * @brief Determines if a number is perfect.
+     * A perfect number is a positive integer that is equal to the sum of its proper positive divisors.
+     * This function calculates the sum of divisors of a given number and compares it to the number itself.
+     * @param number The number to check.
+     * @return enPerfectNumberStatus::PERFECT if the number is perfect,
+               enPerfectNumberStatus::NOT_PERFECT otherwise.
+     * @note This implementation uses a simple brute-force approach to calculate the sum of divisors.
+       For very large numbers, more efficient algorithms could be used.
+     */
+    AtEngineEnums::enPerfectNumberStatus perfectNumberStatus(int number) {
+
+        if (number <= 0) {
+            return AtEngineEnums::enPerfectNumberStatus::NOT_PERFECT; // Negative numbers and zero are not perfect
+        }
+
+        int sum = 1; // Start with 1 as it is a divisor for every number
+
+        // Loop from 2 to half of the number (since divisors larger than half the number cannot be valid)
+        for (int i = 2; i <= number / 2; ++i) {
+            if (number % i == 0) {
+                sum += i; // Add the divisor to the sum
+            }
+        }
+
+        // Early exit if sum exceeds the number
+        if (sum > number) {
+            return AtEngineEnums::enPerfectNumberStatus::NOT_PERFECT;
+        }
+
+        // Final check to determine if the number is perfect
+        return (sum == number) ?
+            AtEngineEnums::enPerfectNumberStatus::PERFECT :
+            AtEngineEnums::enPerfectNumberStatus::NOT_PERFECT;
+    }
+
 }
