@@ -197,10 +197,10 @@ namespace AtEngineEnums
         WINTER  ///< Winter season
     };
 
-    // 16. Time of Day
-/**
- * @brief Represents different times of the day.
- */
+     // 16. Time of Day
+    /**
+     * @brief Represents different times of the day.
+     */
     enum class enTimeOfDay
     {
         MORNING = 1,    ///< Morning time (6 AM - 12 PM)
@@ -211,9 +211,9 @@ namespace AtEngineEnums
     };
 
     // 17. Cardinal Directions
-/**
- * @brief Represents the four primary cardinal directions.
- */
+    /**
+     * @brief Represents the four primary cardinal directions.
+     */
     enum class enCardinalDirection {
         NORTH = 1, ///< North
         SOUTH, ///< South
@@ -303,6 +303,16 @@ namespace AtEngineEnums
         TRAPEZOID,       ///< Trapezoid shape
         POLYGON,         ///< Polygon shape
         ELLIPSE          ///< Ellipse shape
+    };
+
+    // 26. Perfect Number Status
+    /**
+     * @brief Represents whether a number is perfect or not.
+     */
+    enum class enPerfectNumberStatus
+    {
+        PERFECT = 1,    ///< Perfect number
+        NOT_PERFECT  ///< Not a perfect number
     };
 }
 
