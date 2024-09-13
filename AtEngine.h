@@ -547,4 +547,82 @@ namespace AtEngine
         }
     }
 
+    // 24. Prints the digits of a number in reverse order.
+    /**
+     * @brief Prints the digits of a number in reverse order.
+     * This function takes an integer and prints each digit in reverse order, starting from the last digit.
+     * @param number The integer whose digits will be printed in reverse order.
+     */
+    void printDigitsInReverseOrder(int number)
+    {
+        int lastDigit = 0;
+        while (number > 0)
+        {
+            lastDigit = number % 10;
+            number = number / 10;
+            cout << lastDigit << endl;
+        }
+    }
+
+
+    // 25. Computes the sum of the digits of a number.
+    /**
+     * @brief Computes the sum of the digits of a number.
+     *
+     * This function takes an integer and calculates the sum of its digits.
+     * @param number The integer whose digits will be summed.
+     * @return The sum of the digits of the given number.
+     */
+    int sumOfDigits(int number)
+    {
+        int sum = 0, lastDigit = 0;
+        while (number > 0)
+        {
+            lastDigit = number % 10;
+            number = number / 10;
+            sum += lastDigit;
+        }
+        return sum;
+    }
+
+    // 26. Reverses the digits of a number.
+    /**
+     * @brief Reverses the digits of a number.
+     * This function takes an integer and reverses its digits. It extracts each digit from the original number
+     * @param number The integer whose digits will be reversed.
+     * @return The reversed number with digits in reverse order.
+     */
+    int reverseNumber(int number)
+    {
+        int remainder = 0, reversedNumber = 0;
+        while (number > 0)
+        {
+            remainder = number % 10;
+            number /= 10;
+            reversedNumber = reversedNumber * 10 + remainder;
+        }
+        return reversedNumber;
+    }
+
+    // 27. Counts the frequency of a specific digit in a number.
+    /**
+     * @brief Counts the frequency of a specific digit in a number.
+     * @param DigitToCheck The digit whose frequency is to be counted.
+     * @param Number The integer in which the frequency of the digit is to be counted.
+     * @return The frequency of the specified digit within the given number.
+     */
+    int CountDigitFrequency(short DigitToCheck, int Number)
+    {
+        int FreqCount = 0, Remainder = 0;
+        while (Number > 0)
+        {
+            Remainder = Number % 10;
+            Number = Number / 10;
+            if (DigitToCheck == Remainder)
+            {
+                FreqCount++;
+            }
+        }
+        return FreqCount;
+    }
 }
