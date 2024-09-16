@@ -314,5 +314,15 @@ namespace AtEngineEnums
         PERFECT = 1,    ///< Perfect number
         NOT_PERFECT  ///< Not a perfect number
     };
+
+    // 27. Palindrome Number Status
+    /**
+     * @brief Represents whether a number is a palindrome or not.
+     */
+    enum class enPalindromeNumberStatus
+    {
+        PALINDROME = 1,   ///< Palindrome number
+        NOT_PALINDROME    ///< Not a palindrome number
+    };
 }
 
