@@ -564,7 +564,6 @@ namespace AtEngine
         }
     }
 
-
     // 25. Computes the sum of the digits of a number.
     /**
      * @brief Computes the sum of the digits of a number.
@@ -625,4 +624,50 @@ namespace AtEngine
         }
         return FreqCount;
     }
+
+    // 28. Prints the frequency of all digits in a number.
+    /**
+     * @brief Prints the frequency of each digit (0-9) in the given number.
+     * @param number The integer whose digit frequencies are to be printed.
+     */
+    void printAllDigitFrequency(int number)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            int frequency = AtEngine::CountDigitFrequency(i, number);
+            if (frequency > 0)
+            {
+                cout << "Digit " << i << " Frequency is " << frequency
+                    << " " << (frequency == 1 ? "Time" : "Times") << ".\n";
+            }
+        }
+    }
+
+    // 29. Returns the number in its original order.
+    /**
+     * @brief Returns the digits of the number in the same order as they appear.
+     * @param number The integer whose digits are to be returned in the original order.
+     * @return The number with digits in the original order.
+     */
+    int getNumberInOrder(int number)
+    {
+        return AtEngine::reverseNumber(AtEngine::reverseNumber(number));
+    }
+
+    // 31. Check if a number is a palindrome (boolean)
+    /**
+     * @brief Determines if a number is a palindrome.
+     * A palindrome is a number that reads the same forwards and backwards.
+     * This function uses the palindromeNumberStatus function to check if the number is a palindrome.
+     * @param number The number to check.
+     * @return true if the number is a palindrome, false otherwise.
+     * @note This function simply calls palindromeNumberStatus and compares the result
+       to enPalindromeNumberStatus::PALINDROME to determine if the number is a palindrome.
+     */
+    bool IsPalindromeNumber(int number)
+    {
+        return AtEngineEnumFuncs::palindromeNumberStatus(number) == AtEngineEnums::enPalindromeNumberStatus::PALINDROME;
+    }
+
+
 }
