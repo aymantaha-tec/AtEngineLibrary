@@ -9,6 +9,7 @@ using namespace std;
 namespace AtEngine {
 
     int readIntegerOfRange(int from, int to);
+    int reverseNumber(int number);
 }
 
 namespace AtEngineEnumFuncs
@@ -119,6 +120,22 @@ namespace AtEngineEnumFuncs
         return (sum == number) ?
             AtEngineEnums::enPerfectNumberStatus::PERFECT :
             AtEngineEnums::enPerfectNumberStatus::NOT_PERFECT;
+    }
+
+    // 7. Check if a number is a palindrome
+    /**
+     * @brief Determines if a number is a palindrome.
+     * A palindrome is a number that reads the same forwards and backwards.
+     * This function compares the given number with its reversed version to check if it is a palindrome.
+     * @param number The number to check.
+     * @return enPalindromeNumberStatus::PALINDROME if the number is a palindrome,
+               enPalindromeNumberStatus::NOT_PALINDROME otherwise.
+     * @note This implementation uses the reverseNumber function to reverse the digits of the number
+       and then compares the reversed number to the original.
+     */
+    AtEngineEnums::enPalindromeNumberStatus palindromeNumberStatus(int number)
+    {
+       return number == AtEngine::reverseNumber(number) ? AtEngineEnums::enPalindromeNumberStatus::PALINDROME : AtEngineEnums::enPalindromeNumberStatus::NOT_PALINDROME;
     }
 
 }
