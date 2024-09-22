@@ -20,7 +20,7 @@ namespace AtEngine
         int Number;
         cout << Message << endl;
         cin >> Number;
-        while (Number < 0 || cin.fail()) {
+        while (Number < 1 || cin.fail()) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Invalid Number, Enter a positive number: " << endl;
@@ -667,6 +667,120 @@ namespace AtEngine
     bool IsPalindromeNumber(int number)
     {
         return AtEngineEnumFuncs::palindromeNumberStatus(number) == AtEngineEnums::enPalindromeNumberStatus::PALINDROME;
+    }
+
+    // 32. Checks if the number is positive and prints an error message if not.
+    /**
+     * @brief Checks if the given number is positive and prints an error message if the number is not positive.
+     * @param number The number to be checked.
+     * @return true if the number is positive, false otherwise.
+     *
+     * If the number is not positive, it prints an error message to the console.
+     */
+    bool isPositive(int number)
+    {
+        if (number > 0)
+        {
+            return true;
+        }
+        else
+        {
+            cout << "Error: The number " << number << " is not positive." << endl;
+            return false;
+        }
+    }
+
+    // 33. Function to print a pattern of symbols or numbers in either normal or inverted order.
+    /**
+     * Function to print a pattern of symbols or numbers in either normal or inverted order.
+     *
+     * @param number: The number of rows in the pattern (must be positive).
+     * @param isNumber: If true, the pattern will display numbers; if false, it will display symbols (default is true).
+     * @param symbol: The symbol to display in the pattern if isNumber is false (default is '*').
+     * @param inverted: If true, an inverted pattern is printed, otherwise a normal pattern is printed (default is false).
+     */
+    void invertedPattern(int number, bool isNumber = true, char symbol = '*', bool inverted = true)
+    {
+        // Check if the input number is positive
+        if (!isPositive(number)) return;
+
+        // If inverted is true, print an inverted pattern
+        if (inverted)
+        {
+            for (int i = number; i >= 1; i--)  // Loop from number down to 1
+            {
+                for (int j = i; j >= 1; j--)  // Print i symbols/numbers in each row
+                {
+                    // If isNumber is true, print the number, otherwise print the symbol
+                    if (!isNumber)
+                        cout << symbol;
+                    else
+                        cout << i;
+                }
+                cout << endl;  // Move to the next line after each row
+            }
+        }
+        // Otherwise, print a regular (non-inverted) pattern
+        else
+        {
+            for (int i = 1; i <= number; i++)  // Loop from 1 up to number
+            {
+                for (int j = 1; j <= i; j++)  // Print i symbols/numbers in each row
+                {
+                    // If isNumber is true, print the number, otherwise print the symbol
+                    if (!isNumber)
+                        cout << symbol;
+                    else
+                        cout << i;
+                }
+                cout << endl;  // Move to the next line after each row
+            }
+        }
+    }
+
+    // 34. Function to print an inverted pattern of uppercase letters based on the input number.
+    /**
+     * Function to print an inverted pattern of letters based on the input number.
+     *
+     * @param number: The number of letters to print (should be between 1 and 26).
+     * @param isUpperCase: If true, prints uppercase letters; if false, prints lowercase letters.
+     * @param isInverted: If true, prints the pattern in inverted order; if false, prints in normal order.
+     */
+    void invertedLetter(int number, bool isUpperCase = true, bool isInverted = true) {
+
+        // Validate that the number is within the allowed range (1-26)
+        if (!AtEngine::validateNumberInRange(number, 1, 26)) {
+            cout << "Error: The number " << number << " must be between 1 and 26 to represent a valid letter." << endl;
+            return;
+        }
+
+        // Define constants for ASCII values of uppercase and lowercase letters
+        const short UPPER_CASE_START = 65;  // ASCII for 'A'
+        const short LOWER_CASE_START = 97;  // ASCII for 'a'
+
+        // Determine the ASCII starting point based on isUpperCase
+        short AsciiCaseStart = isUpperCase ? UPPER_CASE_START : LOWER_CASE_START;
+
+        if (isInverted) {
+           
+            for (int i = (AsciiCaseStart + number - 1); i >= AsciiCaseStart; i--) {
+                
+                for (int j = 1; j <= number - (AsciiCaseStart + number - 1 - i); j++) {
+                    cout << char(i);  
+                }
+                cout << endl;  
+            }
+        }
+        else {
+       
+            for (int i = AsciiCaseStart; i < AsciiCaseStart + number; i++) {
+        
+                for (int j = 1; j <= (i - AsciiCaseStart + 1); j++) {
+                    cout << char(i); 
+                }
+                cout << endl; 
+            }
+        }
     }
 
 
