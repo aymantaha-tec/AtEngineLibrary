@@ -324,5 +324,18 @@ namespace AtEngineEnums
         PALINDROME = 1,   ///< Palindrome number
         NOT_PALINDROME    ///< Not a palindrome number
     };
+
+    // 38. Character Type Classification
+     /**
+      * @brief Represents different character types for classification.
+     */
+    enum class enCharType {
+        LOWERCASE = 1,         ///< Lowercase alphabet (a-z)
+        UPPERCASE,             ///< Uppercase alphabet (A-Z)
+        SPECIAL_CHARACTER,     ///< Special characters (!, @, #, etc.)
+        DIGIT,                 ///< Digits (0-9)
+        MIXED                  ///< Combination of uppercase, lowercase, digits, and special characters
+    }; 
+
 }
 
