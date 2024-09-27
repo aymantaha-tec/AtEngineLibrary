@@ -699,17 +699,15 @@ namespace AtEngine
      * @param symbol: The symbol to display in the pattern if isNumber is false (default is '*').
      * @param inverted: If true, an inverted pattern is printed, otherwise a normal pattern is printed (default is false).
      */
-    void invertedPattern(int number, bool isNumber = true, char symbol = '*', bool inverted = true)
+    void invertedPattern(int number, bool isNumber = true, char symbol = '*', bool isInverted = true)
     {
-        // Check if the input number is positive
         if (!isPositive(number)) return;
 
-        // If inverted is true, print an inverted pattern
-        if (inverted)
+        if (isInverted)
         {
-            for (int i = number; i >= 1; i--)  // Loop from number down to 1
+            for (int i = number; i >= 1; i--) 
             {
-                for (int j = i; j >= 1; j--)  // Print i symbols/numbers in each row
+                for (int j = i; j >= 1; j--)  
                 {
                     // If isNumber is true, print the number, otherwise print the symbol
                     if (!isNumber)
@@ -717,23 +715,22 @@ namespace AtEngine
                     else
                         cout << i;
                 }
-                cout << endl;  // Move to the next line after each row
+                cout << endl; 
             }
         }
         // Otherwise, print a regular (non-inverted) pattern
         else
         {
-            for (int i = 1; i <= number; i++)  // Loop from 1 up to number
+            for (int i = 1; i <= number; i++)  
             {
-                for (int j = 1; j <= i; j++)  // Print i symbols/numbers in each row
+                for (int j = 1; j <= i; j++)  
                 {
-                    // If isNumber is true, print the number, otherwise print the symbol
                     if (!isNumber)
                         cout << symbol;
                     else
                         cout << i;
                 }
-                cout << endl;  // Move to the next line after each row
+                cout << endl;  
             }
         }
     }
@@ -783,5 +780,160 @@ namespace AtEngine
         }
     }
 
+    // 35. Gets text input from the user
+    /**
+     * @brief Prompts the user to enter text and returns the entered string.
+     * @param prompt The message to display to the user.
+     * @return The string entered by the user.
+     */
+    string getUserInputText(string prompt = "Please enter text:") {
+        string inputText;  
+        cout << prompt + "\n";  
+        getline(cin, inputText);  
+        return inputText;  
+    }
+
+    // 36. Encrypts a string using a given key
+    /**
+     * @brief Encrypts the provided text using the given encryption key.
+     * @param text The text to be encrypted.
+     * @param Encryptionkey The key used to modify each character in the string.
+     * @return The encrypted text.
+     */
+    string encryption(string text, short encryptionkey) {
+
+        for (int i = 0; i < text.length(); i++) {
+            text[i] = char((int)text[i] + encryptionkey);  // Modify each character by adding the encryption key
+        }
+
+        return text;  // Return the encrypted string
+    };
+
+    // 37. Decrypts a string using a given key
+    /**
+     * @brief Decrypts the provided text using the given encryption key.
+     * @param text The text to be decrypted.
+     * @param Encryptionkey The key used to revert each character in the string to its original state.
+     * @return The decrypted text.
+     */
+    string decryption(string text, short encryptionkey) {
+
+        for (int i = 0; i < text.length(); i++) {
+            text[i] = char((int)text[i] - encryptionkey);  // Modify each character by subtracting the encryption key
+        }
+
+        return text;  // Return the decrypted string
+    };
+
+    // 38. Validates a range with a simple check
+    /**
+     * @brief Checks if the to value is greater than or equal to the from value.
+     * @param from The from value of the range.
+     * @param to The to value of the range.
+     * @return true if the range is valid; false otherwise.
+     */
+    bool simpleValidateRange(int from, int to) {
+        // Validate the range
+        if (to < from) {
+            cout << "Error: The to value (" << to << ") must be greater than or equal to the from value (" << from << ")." << endl;
+            return false;
+        }
+        return true; // Range is valid
+    }
+
+    // 39. Generates a random number within a specified range
+    /**
+     * @brief Generates a random number between the specified range [from, to].
+     * @param from The lower bound of the range.
+     * @param to The upper bound of the range.
+     * @return A random integer between from and to, or -1 if the range is invalid.
+     *
+     * Note: Call srand((unsigned)time(NULL)); in main() to seed the random number generator
+     * before using this function, ensuring different random numbers on each execution.
+     *
+     * Note: Include <cstdlib> to use this function as it is required for rand and srand.
+     */
+    int randomNumber(int from, int to) {
+
+        // Validate the range
+        if (!AtEngine::simpleValidateRange(from, to)) {
+            cout << "Error: Invalid range. Ensure that 'to' is greater than or equal to 'from'." << endl;
+            return -1;  // Return -1 to indicate an error
+        }
+
+        // Generate a random number between from and to
+        int randomNum = rand() % (to - from + 1) + from;
+        return randomNum;
+    }
+
+    // 40. Generates a random character based on the specified character type
+     /**
+      * @brief Generates a random character based on the specified character type.
+      * @param charType The character type, can be LOWERCASE, UPPERCASE, SPECIAL_CHARACTER, or DIGIT.
+      * @return A random character of the specified type.
+      *
+      * Note: The function generates characters within specific ASCII ranges:
+      * LOWERCASE: 'a' to 'z' (ASCII 97-122)
+      * UPPERCASE: 'A' to 'Z' (ASCII 65-90)
+      * SPECIAL_CHARACTER: Symbols like !, @, # (ASCII 33-47)
+      * DIGIT: '0' to '9' (ASCII 48-57)
+      *
+      * Note: Include <cstdlib> and ensure srand((unsigned)time(NULL)); is called to seed the random number generator before using this function.
+      */
+    char getRandomCharacter(AtEngineEnums::enCharType charType) {
+
+        switch (charType)
+        {
+        case AtEngineEnums::enCharType::LOWERCASE:
+            return char(AtEngine::randomNumber(97, 122));  // Generate a lowercase letter
+
+        case AtEngineEnums::enCharType::UPPERCASE:
+            return char(AtEngine::randomNumber(65, 90));   // Generate an uppercase letter
+
+        case AtEngineEnums::enCharType::SPECIAL_CHARACTER:
+            return char(AtEngine::randomNumber(33, 47));   // Generate a special character
+
+        case AtEngineEnums::enCharType::DIGIT:
+            return char(AtEngine::randomNumber(48, 57));   // Generate a digit
+
+        case AtEngineEnums::enCharType::MIXED:
+            // Generate a random choice between lowercase, uppercase, digit, or special character
+            switch (AtEngine::randomNumber(1, 4)) {
+            case 1:
+                return char(AtEngine::randomNumber(97, 122));  // Lowercase letter
+            case 2:
+                return char(AtEngine::randomNumber(65, 90));   // Uppercase letter
+            case 3:
+                return char(AtEngine::randomNumber(48, 57));   // Digit
+            case 4:
+                return char(AtEngine::randomNumber(33, 47));   // Special character
+            }
+
+        default:
+            cout << "Invalid character type specified.\n";
+            return '\0';  // Return null character in case of an error
+        }
+    }
+
+    // 41. Generates a random string of characters
+    /**
+     * @brief Generates a random string of characters based on the specified character type.
+     * @param numOfCharacters The number of characters to generate.
+     * @param charType The type of characters to include (lowercase, uppercase, digits, etc.).
+     * @return A string containing the generated characters.
+     * Note: Ensure that the numberOfCharacters is a positive integer; otherwise, an empty string will be returned.
+     * Note: Include <cstdlib> and ensure srand((unsigned)time(NULL)); is called to seed the random number generator before using this function.
+     */
+    string generateCharacter(int numOfCharacters, AtEngineEnums::enCharType charType = AtEngineEnums::enCharType::MIXED)
+    {
+        if (!AtEngine::isPositive(numOfCharacters)) return "";
+
+        string generatedString = "";
+        for (int i = 0; i < numOfCharacters; i++)
+        {
+            generatedString += AtEngine::getRandomCharacter(charType);
+        }
+        return generatedString;
+    }
 
 }
