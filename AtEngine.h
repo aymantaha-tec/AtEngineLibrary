@@ -2,6 +2,7 @@
 
 #include<iosfwd>
 #include <string>
+#include <vector>
 #include "AtEngineEnumFuncs.h"
 #include "AtEngineStructFuncs.h"
 
@@ -935,5 +936,203 @@ namespace AtEngine
         }
         return generatedString;
     }
+
+    // 42. Reads elements into a traditional array
+    /**
+     * @brief Reads elements into a traditional array.
+     * @param arr[] The traditional array to store the elements.
+     * @param size The reference to the number of elements to read.
+     */
+    void inputArray(int arr[], int& size)
+    {
+        cout << "\nEnter number of elements (max 100):\n";
+        cin >> size;
+
+        if (size > 100)
+        {
+            cout << "Error: The maximum allowed size is 100.\n";
+            return;
+        }
+
+        cout << "\nEnter array elements:\n";
+        for (int i = 0; i < size; i++)
+        {
+            cout << "Element [" << i + 1 << "] : ";
+            cin >> arr[i];
+        }
+    }
+
+    // 43. Reads elements into a std::vector
+    /**
+     * @brief Reads elements into a std::vector.
+     * @param arr The std::vector to store the elements.
+     */
+    void inputArray(vector<int>& arr)
+    {
+        int size;
+        cout << "\nEnter number of elements:\n";
+        cin >> size;
+
+        arr.resize(size);
+
+        cout << "\nEnter array elements:\n";
+        for (int i = 0; i < size; i++)
+        {
+            cout << "Element [" << i + 1 << "] : ";
+            cin >> arr[i];
+        }
+    }
+
+    //// 44. Reads elements into a dynamically allocated array (pointer)
+    ///**
+    // * @brief Reads elements into a dynamically allocated array using pointers.
+    // * @param arr The pointer to the array.
+    // * @param size The reference to the number of elements to read.
+    // */
+    //void inputArray(int* arr, int& size)
+    //{
+    //    cout << "\nEnter number of elements:\n";
+    //    cin >> size;
+
+    //    cout << "\nEnter array elements:\n";
+    //    for (int i = 0; i < size; i++)
+    //    {
+    //        cout << "Element [" << i + 1 << "] : ";
+    //        cin >> arr[i];
+    //    }
+    //}
+
+    // 45. Prints all elements of an array
+    /**
+     * @brief Prints all elements of an array.
+     * @param arr[] The array of integers to print.
+     * @param length The length of the array.
+     */
+    void printAllArray(int arr[], int length)
+    {
+        cout << "Original Array: ";
+
+        for (int i = 0; i < length; i++)
+        {
+            cout << arr[i] << " ";  // Print each element followed by a space
+        }
+        cout << endl;  // Print a new line at the end
+    }
+
+    // 46. Counts how many times a specific number appears in an array
+    /**
+     * @brief Counts how many times a specific number appears in an array.
+     * @param arr[] The array of integers.
+     * @param length The length of the array.
+     * @param numberCheck The number to check for in the array.
+     * @return The count of occurrences of numberCheck in the array.
+     */
+    int TimesRepeated(int arr[], int length, int numberCheck)
+    {
+        int count = 0;  // Variable to store the count of occurrences
+        for (int i = 0; i < length; i++)
+        {
+            if (arr[i] == numberCheck)  // Check if the current element matches the number
+            {
+                count++;  // Increment count if there's a match
+            }
+        }
+
+        if (count == 0) {
+            cout << "The number " << numberCheck << " is not present in the array.\n";
+        }
+
+        return count;  // Return the total count of occurrences
+    }
+
+    // 47. Fills an array with random numbers
+    /**
+     * @brief Fills an array with random numbers within a specified range.
+     * @param arr[] The array to fill with random numbers.
+     * @param size The reference to the number of elements to fill.
+     * @param from The lower bound of the random number range.
+     * @param to The upper bound of the random number range.
+     */
+    void fillArrayWithRandomNumbers(int arr[], int& size, int from, int to) {
+        cout << "\nEnter number of elements (max 100):\n";
+        cin >> size;
+
+        if (size > 100) {
+            cout << "Error: The maximum allowed size is 100.\n";
+            return;
+        }
+
+        if (from >= to) {
+            cout << "Error: 'from' must be less than 'to'.\n";
+            return;
+        }
+
+        for (int i = 0; i < size; i++) {
+            arr[i] = AtEngine::randomNumber(from, to);
+        }
+    }
+
+    // 49. Finds the maximum value in an array
+    /**
+     * @brief Retrieves the maximum value in an integer array.
+     * This function iterates through the provided array and returns the largest element.
+     * @param arr The array to search for the maximum value.
+     * @param size The size of the array.
+     * @return The maximum value in the array.
+     */
+    int getMaxValueInArray(int arr[], int size) {
+        int max = arr[0];
+
+        for (int i = 1; i < size; ++i) {
+            // 3. Update max if the current element is greater than max
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+
+        return max;
+    }
+
+    // 50. Finds the minimum value in an array
+    /**
+     * @brief Retrieves the minimum value in an integer array.
+     * This function iterates through the provided array and returns the smallest element.
+     * @param arr The array to search for the minimum value.
+     * @param size The size of the array.
+     * @return The minimum value in the array.
+     */
+    int getMinValueInArray(int arr[], int size) {
+        // 1. Initialize min to the first element in the array
+        int min = arr[0];
+
+        // 2. Iterate through the array starting from the second element
+        for (int i = 1; i < size; ++i) {
+            if (arr[i] < min) {
+                min = arr[i];
+            }
+        }
+        return min;
+    }
+
+    // 51. Calculates the sum of elements in an array
+    /**
+     * @brief Calculates the sum of elements in an integer array.
+     *
+     * This function iterates through the array and returns the total sum of its elements.
+     *
+     * @param arr The array of integers to sum.
+     * @param arrLength The number of elements in the array.
+     * @return The sum of the elements in the array.
+     */
+    int SumArray(int arr[], int arrLength) {
+        if (arrLength <= 0) return 0; // Check for empty array
+
+        int sum = 0; // Initialize sum
+        for (int i = 0; i < arrLength; i++) {
+            sum += arr[i]; // Accumulate the sum
+        }
+        return sum; 
+    }
+
 
 }
