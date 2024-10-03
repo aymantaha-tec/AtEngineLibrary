@@ -1124,8 +1124,10 @@ namespace AtEngine
      * @param arrLength The number of elements in the array.
      * @return The sum of the elements in the array.
      */
-    int SumArray(int arr[], int arrLength) {
-        if (arrLength <= 0) return 0; // Check for empty array
+    int getSumArray(const int arr[], int arrLength) {
+        if (arr == nullptr || arrLength <= 0) {
+            return 0; // Return 0 for empty or invalid array
+        }
 
         int sum = 0; // Initialize sum
         for (int i = 0; i < arrLength; i++) {
@@ -1134,5 +1136,24 @@ namespace AtEngine
         return sum; 
     }
 
+    // 52. Calculates the average of elements in an array
+    /**
+     * @brief Calculates the average of elements in an integer array.
+     *
+     * This function computes the sum of the elements in the array using the getSumArray function
+     * and returns the average as a float. It checks for valid array and length to avoid division by zero.
+     *
+     * @param arr The array of integers to process.
+     * @param arrLength The number of elements in the array.
+     * @return The average of the elements as a float. Returns 0.0 if the array is empty or invalid.
+     */
+    float getAverageArray(const int arr[], int arrLength)
+    {
+        if (arr == nullptr || arrLength <= 0) {
+            return 0.0f;  // Return 0 for invalid array or length
+        }
+
+        return static_cast<float>(AtEngine::getSumArray(arr, arrLength)) / arrLength;
+    }
 
 }
