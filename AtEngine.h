@@ -1007,10 +1007,11 @@ namespace AtEngine
      * @brief Prints all elements of an array.
      * @param arr[] The array of integers to print.
      * @param length The length of the array.
+     * @param text An optional string to print before the array elements (default is "Original Array:").
      */
-    void printAllArray(int arr[], int length)
+    void printAllArray(int arr[], int length, string text = "Original Array: ")
     {
-        cout << "Original Array: ";
+        cout << text;
 
         for (int i = 0; i < length; i++)
         {
@@ -1155,5 +1156,95 @@ namespace AtEngine
 
         return static_cast<float>(AtEngine::getSumArray(arr, arrLength)) / arrLength;
     }
+
+    // 53. Copies elements from one array to another
+    /**
+     * @brief Copies elements from the source array to the destination array.
+     *
+     * This function takes two integer arrays, the source and destination, along with the length of the array.
+     * It copies each element from the source array into the corresponding index of the destination array.
+     * It assumes that the arrays have the same length and the provided length is valid.
+     *
+     * @param arrSource The source array of integers to copy from.
+     * @param arrDestination The destination array of integers to copy to.
+     * @param arrLength The number of elements to copy from the source array.
+     */
+    void copyArray(const int* arrSource, int* arrDestination, int arrLength)
+    {
+        for (int i = 0; i < arrLength; i++)
+            arrDestination[i] = arrSource[i];
+    }
+
+    // 54. Copies only prime numbers from source array to destination array
+    /**
+     * @brief Copies only the prime numbers from the source array to the destination array.
+     *
+     * This function checks each element of the source array and, if it is prime,
+     * copies it to the destination array. It also updates the length of the destination
+     * array to reflect the number of prime numbers copied. The function checks for valid
+     * arrays and lengths to avoid processing invalid input.
+     *
+     * @param arrSource The source array of integers to copy from.
+     * @param arrDestination The destination array to copy prime numbers to.
+     * @param arrLength The number of elements in the source array.
+     * @param arrLength2 A reference that will store the number of prime numbers copied to the destination array.
+     */
+    void copyOnlyPrimeNumbersArray(const int* arrSource, int* arrDestination, int arrLength, int& arrLength2)
+    {
+        // Initialize a counter for prime numbers
+        int counter = 0;
+
+        // Check for valid source and destination pointers
+        if (arrSource == nullptr || arrDestination == nullptr)
+        {
+            arrLength2 = 0;
+            return;
+        }
+
+
+        for (int i = 0; i < arrLength; i++)
+        {
+
+            if (AtEngineEnumFuncs::checkPrime(arrSource[i]) == AtEngineEnums::enNumberPrimeStatus::PRIME)
+            {
+                arrDestination[counter] = arrSource[i];
+                counter++;
+            }
+        }
+
+
+        arrLength2 = counter;
+    }
+
+    // 55. Sums the elements of two arrays
+     /**
+      * @brief Sums the elements of two arrays element by element.
+      *
+      * This function takes two source arrays and a destination array,
+      * and stores the sum of corresponding elements from the source arrays
+      * into the destination array. The function checks for valid arrays
+      * to avoid null pointer issues.
+      *
+      * @param arrSource The first source array.
+      * @param arrDestination The second source array.
+      * @param arrSum The array where the sum of the elements will be stored.
+      * @param arrLength The number of elements in the arrays.
+      */
+    void sumOf2Arrays(const int* arrSource, int* arrDestination, int* arrSum, int arrLength)
+    {
+        // Check if the arrays are valid
+        if (arrSource == nullptr || arrDestination == nullptr || arrSum == nullptr)
+        {
+            cout << "Error: One or more arrays are invalid (nullptr)." << endl;
+            return;  // Exit if any of the arrays is invalid
+        }
+
+        // Sum the corresponding elements of arrSource and arrDestination
+        for (int i = 0; i < arrLength; i++)
+        {
+            arrSum[i] = arrSource[i] + arrDestination[i];  // Store the sum in arrSum
+        }
+    }
+
 
 }
