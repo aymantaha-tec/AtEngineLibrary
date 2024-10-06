@@ -1246,5 +1246,75 @@ namespace AtEngine
         }
     }
 
+    // 56. Fills an array with ordered numbers starting from a given number
+    /**
+     * @brief Fills an array with ordered numbers starting from a given number.
+     * This function takes an integer array and fills it with ordered numbers
+     * starting from the specified starting number. It iterates through the array
+     * and assigns values in sequential order. If no starting number is provided,
+     * the sequence will start from 1 by default.
+     * The function checks for a valid array length before proceeding.
+     * @param arr The array to be filled with ordered numbers.
+     * @param arrLength The number of elements in the array.
+     * @param startNumber (Optional) The number to start the sequence from. Default is 1.
+     */
+    void fillArrayWithOrderedNumbers(int arr[], int arrLength, int startNumber = 1)
+    {
+        if (arrLength <= 0)
+        {
+            // Error check for invalid array length
+            std::cout << "Error: Array length must be greater than 0." << std::endl;
+            return;
+        }
+
+        for (int i = 0; i < arrLength; i++)
+        {
+            arr[i] = startNumber + i;
+        }
+    }
+
+    // 57. Shuffles an array using Fisher-Yates algorithm
+    /**
+     * @brief Shuffles the elements of an array randomly using the Fisher-Yates algorithm.
+     *
+     * This function shuffles the elements of the provided array using the
+     * Fisher-Yates shuffle algorithm, which ensures an even and unbiased shuffle.
+     *
+     * @param arr The array to be shuffled.
+     * @param arrLength The number of elements in the array.
+     */
+    void ShuffleArrayByFisherYates(int arr[], int arrLength)
+    {
+        for (int i = arrLength - 1; i > 0; i--)
+        {
+            // Generate a random index between 0 and i
+            int j = AtEngine::randomNumber(1, i + 1) - 1;
+
+            // Swap the current element with the randomly chosen element
+            AtEngine::swap(arr[i], arr[j]);
+        }
+    }
+
+    // 58. Shuffles an array by swapping random elements
+    /**
+     * @brief Shuffles the elements of an array by randomly swapping elements.
+     *
+     * This function shuffles the elements of the provided array by randomly
+     * selecting two elements at a time and swapping their positions. This method
+     * ensures some level of randomness, though repeated selections of the same
+     * element may occur.
+     *
+     * @param arr The array to be shuffled.
+     * @param arrLength The number of elements in the array.
+     */
+    void ShuffleArray(int arr[], int arrLength)
+    {
+        for (int i = 0; i < arrLength; i++)
+        {
+            // Randomly select two elements and swap them
+            AtEngine::swap(arr[AtEngine::randomNumber(1, arrLength) - 1],
+                arr[AtEngine::randomNumber(1, arrLength) - 1]);
+        }
+    }
 
 }
