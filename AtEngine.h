@@ -1461,7 +1461,7 @@ namespace AtEngine
         arr[arrLength - 1] = number;  // Add the number at the new last index
     }
 
-    // 45. Adds an element to the end of a vector
+    // 65. Adds an element to the end of a vector
     /**
      * @brief Adds a number to the end of a vector.
      *
@@ -1476,4 +1476,40 @@ namespace AtEngine
     {
         vec.push_back(number);  // Automatically resizes the vector and adds the number
     }
+
+    // 67. Asks the user if they want to add more
+    /**
+     * @brief Prompts the user to input 'y' or 'n' to decide whether to add more.
+     *
+     * This function displays a message asking the user if they would like to add more
+     * items or data. It expects an input of either 'y' or 'n'. If the user inputs 'y' or 'Y',
+     * it returns true, otherwise it returns false. In case of invalid input, the user is
+     * asked to try again until a valid response is provided.
+     *
+     * @param message The prompt message to display, defaults to "Add More Or Not y/n".
+     * @return true if the user inputs 'y' or 'Y', false otherwise.
+     */
+    bool askToAddMore(string message = "Add More Or Not y/n") {
+
+        char add = 'n';
+        while (true) {
+            cout << message << endl;
+            cin >> add;
+
+            // Ignore any additional spaces or extra input
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            // Check user input
+            if (add == 'y' || add == 'Y') {
+                return true;
+            }
+            else if (add == 'n' || add == 'N') {
+                return false;
+            }
+            else {
+                cout << "Invalid input. Please enter 'y' or 'n'." << endl;
+            }
+        }
+    }
+
 }
