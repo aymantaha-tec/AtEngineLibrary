@@ -1317,4 +1317,163 @@ namespace AtEngine
         }
     }
 
+    // 59. Copies the elements of an array in reverse order
+    /**
+     * @brief Copies the elements of the source array into the destination array in reverse order.
+     *
+     * This function copies the elements from the source array and stores them in the
+     * destination array, but in reverse order. The first element of the source array
+     * will become the last element of the destination array, and so on.
+     *
+     * @param arrSource The source array from which elements will be copied.
+     * @param arrDestination The destination array where elements will be stored in reverse order.
+     * @param arrLength The number of elements in both the source and destination arrays.
+     */
+    void copyArrayInReverseOrder(int arrSource[], int arrDestination[], int arrLength)
+    {
+        // Loop through each element of the source array in reverse and copy it to the destination array.
+        for (int i = 0; i < arrLength; i++)
+        {
+            arrDestination[i] = arrSource[arrLength - 1 - i];
+        }
+    }
+
+    // 60. Reverses the elements of an array in place
+    /**
+     * @brief Reverses the elements of the provided array in place.
+     *
+     * This function swaps the elements of the array in place to reverse their order.
+     * The first element will be swapped with the last, the second with the second-to-last, and so on.
+     *
+     * @param Arr The array to be reversed.
+     * @param Length The number of elements in the array.
+     */
+    void reverseArrayInPlace(int arr[], int arrLength) {
+        for (int i = 0; i < arrLength / 2; i++)
+        {
+            swap(arr[i], arr[arrLength - i - 1]);
+        }
+    }
+
+    // 61. Generates a random string of specified length based on the selected character types
+    /**
+     * @brief Generates a random string based on specified character types: UPPERCASE, LOWERCASE, DIGIT, SPECIAL_CHARACTER, or a combination.
+     *
+     * This function generates a string with random characters of the desired type(s) for the specified length.
+     * Available character types include UPPERCASE letters, LOWERCASE letters, DIGITs, and SPECIAL_CHARACTERs.
+     * The function provides flexibility to combine different types as needed.
+     *
+     * @param length The length of the random string to be generated.
+     * @param includeUppercase Whether to include uppercase letters (A-Z).
+     * @param includeLowercase Whether to include lowercase letters (a-z).
+     * @param includeDigits Whether to include digits (0-9).
+     * @param includeSpecialChars Whether to include special characters (e.g., @, #, $, etc.).
+     * @return std::string The generated random string.
+     */
+    string generateRandomString(int length, bool includeUppercase = true, bool includeLowercase = true,
+        bool includeDigits = true, bool includeSpecialChars = true) {
+        string characters = "";
+
+        if (includeUppercase) {
+            characters += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        }
+        if (includeLowercase) {
+            characters += "abcdefghijklmnopqrstuvwxyz";
+        }
+        if (includeDigits) {
+            characters += "0123456789";
+        }
+        if (includeSpecialChars) {
+            characters += "!@#$%^&*()-_=+[]{}|;:,.<>?/";
+        }
+
+        if (characters.empty()) {
+            return "";  // No valid character set provided
+        }
+
+        string randomString = "";
+        for (int i = 0; i < length; i++) {
+            randomString += characters[rand() % characters.length()];
+        }
+
+        return randomString;
+    }
+
+    // 62. Finds the position of a number in an array
+    /**
+     * @brief Searches for a number in an array and returns its index if found.
+     *
+     * This function iterates through the array to find the specified number.
+     * If the number is found, the function returns its index. If the number
+     * does not exist in the array, it returns -1.
+     *
+     * @param Number The number to search for in the array.
+     * @param arr The array to search in.
+     * @param arrLength The length of the array.
+     * @return short The index of the number if found, or -1 if not found.
+     */
+    short findNumberPositionInArray(int number, int arr[], int arrLength)
+    {
+        for (int i = 0; i < arrLength; i++)
+        {
+            if (arr[i] == number)
+                return i; // Return the index when the number is found
+        }
+        // If you reach here, this means the number is not found
+        return -1;
+    }
+
+    // 63. Checks if a number exists in an array
+    /**
+     * @brief Checks whether a number exists in an array.
+     *
+     * This function utilizes the findNumberPositionInArray function to check if a given
+     * number exists in the array. If the number is found, the function returns true;
+     * otherwise, it returns false.
+     *
+     * @param number The number to search for in the array.
+     * @param arr The array to search in.
+     * @param arrLength The length of the array.
+     * @return bool True if the number exists in the array, otherwise false.
+     */
+    bool isNumberInArray(int number, int arr[], int arrLength)
+    {
+        return findNumberPositionInArray(number, arr, arrLength) != -1;
+    }
+
+    // 64. Adds an element to the end of an array
+    /**
+     * @brief Adds a number to the end of an array and increments its length.
+     *
+     * This function increases the array length by one and adds the provided
+     * number to the end of the array. Note that this function assumes the array
+     * has enough allocated memory to hold the additional element. Otherwise,
+     * it may result in undefined behavior.
+     *
+     * @param number The number to add to the array.
+     * @param arr The array where the number will be added.
+     * @param arrLength A reference to the current length of the array. This
+     * length will be incremented after adding the new element.
+     */
+    void addArrayElement(int number, int arr[], int& arrLength)
+    {
+        arrLength++;  // Increment the array length
+        arr[arrLength - 1] = number;  // Add the number at the new last index
+    }
+
+    // 45. Adds an element to the end of a vector
+    /**
+     * @brief Adds a number to the end of a vector.
+     *
+     * This function appends the given number to the end of the provided vector.
+     * Since vectors manage their own size dynamically, there is no need to
+     * manually adjust the size of the vector.
+     *
+     * @param number The number to add to the vector.
+     * @param vec The vector where the number will be added.
+     */
+    void addArrayElement(int number, vector<int>& vec)
+    {
+        vec.push_back(number);  // Automatically resizes the vector and adds the number
+    }
 }
