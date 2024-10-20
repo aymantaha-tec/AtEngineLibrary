@@ -1477,7 +1477,7 @@ namespace AtEngine
         vec.push_back(number);  // Automatically resizes the vector and adds the number
     }
 
-    // 67. Asks the user if they want to add more
+    // 66. Asks the user if they want to add more
     /**
      * @brief Prompts the user to input 'y' or 'n' to decide whether to add more.
      *
@@ -1489,7 +1489,7 @@ namespace AtEngine
      * @param message The prompt message to display, defaults to "Add More Or Not y/n".
      * @return true if the user inputs 'y' or 'Y', false otherwise.
      */
-    bool askToAddMore(string message = "Add More Or Not y/n") {
+    bool askToAddMore(const string& message = "Would you like to add more? (y/n)") {
 
         char add = 'n';
         while (true) {
@@ -1511,5 +1511,47 @@ namespace AtEngine
             }
         }
     }
+
+    // 67. Reads numbers from the user and adds them to a C-style array
+    /**
+     * @brief Reads numbers from the user and adds them to a C-style array until the user chooses to stop.
+     *
+     * This function prompts the user to enter positive numbers and adds them to the provided C-style array.
+     * It continues to do so until the user decides not to add more numbers.
+     *
+     * @param arr The C-style array to which numbers will be added.
+     * @param arrLength A reference to an integer that keeps track of the current number of elements in the array.
+     */
+    void inputUserNumbersInArray(int arr[], int& arrLength) {
+        do {
+            // Prompt user to enter a positive number
+            int number = AtEngine::readPositiveNumber("Add number to array?");
+
+            // Add number to array
+            AtEngine::addArrayElement(number, arr, arrLength);
+
+        } while (AtEngine::askToAddMore());
+    }
+
+    // 68. Reads numbers from the user and adds them to a std::vector<int>
+    /**
+     * @brief Reads numbers from the user and adds them to a std::vector<int> until the user chooses to stop.
+     *
+     * This function prompts the user to enter positive numbers and adds them to the provided `std::vector<int>`.
+     * It continues to do so until the user decides not to add more numbers.
+     *
+     * @param vec The `std::vector<int>` to which numbers will be added.
+     */
+    void inputUserNumbersInArray(std::vector<int>& vec) {
+        do {
+            // Prompt user to enter a positive number
+            int number = AtEngine::readPositiveNumber("Add number to vector?");
+
+            // Add number to vector
+            AtEngine::addArrayElement(number, vec);
+
+        } while (AtEngine::askToAddMore());
+    }
+
 
 }
