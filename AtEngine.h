@@ -1553,5 +1553,89 @@ namespace AtEngine
         } while (AtEngine::askToAddMore());
     }
 
+    // 69. Copies elements from one array to another using addArrayElement
+    /**
+     * @brief Copies elements from one array to another using the addArrayElement function.
+     *
+     * This function copies elements from the source array (`arrSource`) to the destination array (`arrDestination`).
+     * It uses the `addArrayElement` function to add each element individually.
+     *
+     * @param arrSource The source array from which elements will be copied.
+     * @param arrDestination The destination array to which elements will be added.
+     * @param arrLength The number of elements in the source array.
+     * @param arrDestinationLength The current length of the destination array, which will be updated as elements are added.
+     */
+    void copyArrayUsingAddArrayElement(int arrSource[], int arrDestination[], int arrLength, int& arrDestinationLength) {
+        for (int i = 0; i < arrLength; i++) {
+            // Add each element from arrSource to arrDestination
+            AtEngine::addArrayElement(arrSource[i], arrDestination, arrDestinationLength);
+        }
+    }
+
+    // 70. Copies elements from one std::vector<int> to another using addArrayElement
+    /**
+     * @brief Copies elements from one std::vector<int> to another using the addArrayElement function.
+     *
+     * This function copies the elements of the source `std::vector<int>` into the destination `std::vector<int>`.
+     * It uses the `addArrayElement` function to add each element individually.
+     *
+     * @param vecSource The `std::vector<int>` from which elements will be copied.
+     * @param vecDestination The `std::vector<int>` to which elements will be added.
+     */
+    void copyArrayUsingAddArrayElement(const std::vector<int>& vecSource, std::vector<int>& vecDestination) {
+        for (int i = 0; i < vecSource.size(); i++) {
+            // Add each element from vecSource to vecDestination
+            AtEngine::addArrayElement(vecSource[i], vecDestination);
+        }
+    }
+
+    // 71. Copies numbers from one array to another based on their parity (odd or even)
+    /**
+     * @brief Copies either odd or even numbers from the source array to the destination array based on their parity.
+     *
+     * This function copies the odd or even numbers from the source array (`arrSource`)
+     * to the destination array (`arrDestination`) based on the specified parity.
+     * It uses the `addArrayElement` function to add each element that matches the parity.
+     *
+     * @param arrSource The source array from which elements will be copied.
+     * @param arrDestination The destination array to which elements will be added.
+     * @param arrLength The number of elements in the source array.
+     * @param arrDestinationLength The current length of the destination array, which will be updated as elements are added.
+     * @param numberParity The parity of numbers to copy (ODD or EVEN). The default is ODD.
+     */
+    void copyNumbersByParity(int arrSource[], int arrDestination[], int arrLength, int& arrDestinationLength, AtEngineEnums::enNumberParity numberParity = AtEngineEnums::enNumberParity::ODD) {
+        for (int i = 0; i < arrLength; i++) {
+            // Add elements that match the specified parity to arrDestination
+            if (AtEngineEnumFuncs::checkNumberParity(arrSource[i]) == numberParity) {
+                AtEngine::addArrayElement(arrSource[i], arrDestination, arrDestinationLength);
+            }
+        }
+    }
+
+    // 72. Copies numbers from one array to another based on their prime status (prime or non-prime)
+    /**
+     * @brief Copies either prime or non-prime numbers from the source array to the destination array.
+     *
+     * This function copies the prime or non-prime numbers from the source array (`arrSource`)
+     * to the destination array (`arrDestination`) based on the specified prime status.
+     * It uses the `addArrayElement` function to add each element that matches the prime status.
+     *
+     * @param arrSource The source array from which elements will be copied.
+     * @param arrDestination The destination array to which elements will be added.
+     * @param arrLength The number of elements in the source array.
+     * @param arrDestinationLength The current length of the destination array, which will be updated as elements are added.
+     * @param numberPrimeStatus The prime status of numbers to copy (PRIME or NON_PRIME). The default is PRIME.
+     */
+    void copyNumbersByPrimeStatus(int arrSource[], int arrDestination[], int arrLength, int& arrDestinationLength, AtEngineEnums::enNumberPrimeStatus numberPrimeStatus = AtEngineEnums::enNumberPrimeStatus::PRIME) {
+        for (int i = 0; i < arrLength; i++) {
+            // Add elements that match the specified prime status to arrDestination
+            if (AtEngineEnumFuncs::checkPrime(arrSource[i]) == numberPrimeStatus) {
+                AtEngine::addArrayElement(arrSource[i], arrDestination, arrDestinationLength);
+            }
+        }
+    }
+
+
+
 
 }
