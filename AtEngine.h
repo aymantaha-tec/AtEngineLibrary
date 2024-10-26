@@ -1635,7 +1635,81 @@ namespace AtEngine
         }
     }
 
+    // 73. Copy Distinct Numbers from One Array to Another
+    /**
+     * @brief This function copies only unique numbers from the source array to the destination array.
+     *
+     * The function iterates over each element in `sourceArr`, and if it does not already exist in
+     * `destinationArr`, it adds it. This function requires the helper functions `IsNumberInArray`
+     * to check if the number is already in the destination array, and `AddArrayElement` to add elements.
+     *
+     * @param sourceArr The source array containing the original numbers.
+     * @param destinationArr The destination array where unique numbers will be copied.
+     * @param sourceLength The number of elements in the source array.
+     * @param destinationLength The current number of elements in the destination array, which
+     * will be updated as new elements are added.
+     */
+     void copyDistinctNumbersToArray(int sourceArr[100], int destinationArr[100], int sourceLength, int& destinationLength) 
+     {
+        for (int i = 0; i < sourceLength; i++) 
+        {
+            if (!isNumberInArray(sourceArr[i], destinationArr, destinationLength)) 
+            {
+                addArrayElement(sourceArr[i], destinationArr, destinationLength);
+            }
+        }
+    }
 
+    // 74. Check if an Array is a Palindrome
+    /**
+     * @brief Determines if the given array is a palindrome.
+     *
+     * This function checks if the array `arr` is a palindrome by comparing elements
+     * from the beginning and end towards the center. If all corresponding elements match,
+     * the array is considered a palindrome.
+     *
+     * @param arr The array to be checked.
+     * @param arrLength The number of elements in the array.
+     * @return true if the array is a palindrome; otherwise, false.
+     */
+     bool IsPalindromeArray(int arr[100], int arrLength) {
+         for (int i = 0; i < arrLength / 2; i++) {
+             if (arr[i] != arr[arrLength - i - 1]) {
+                 return false;
+             }
+         }
+         return true;
+     }
 
+     // 75. Counts the odd, even, or all numbers in an array.
+     /**
+     * @brief Counts the odd, even, or all numbers in an array.
+     *
+     * This function counts the number of odd or even numbers in the provided array
+     * based on the specified parity type. It can also count all numbers if requested.
+     *
+     * @param arr1 The array of integers to check.
+     * @param arrLength The length of the array.
+     * @param numberParityIncludeAll The parity type to count (ODD, EVEN, or ALL).
+     * @return The count of numbers matching the specified parity type.
+     */
+     int countNumbersByParity(int arr1[], int arrLength, AtEngineEnums::enNumberParityIncludeAll numberParityIncludeAll = AtEngineEnums::enNumberParityIncludeAll::ODD)
+     {
+         int count = 0; // Initialize count to zero
+
+         // Iterate through the array
+         for (int i = 0; i < arrLength; i++)
+         {
+             // Check if counting all numbers
+             if (numberParityIncludeAll == AtEngineEnums::enNumberParityIncludeAll::ALL) {
+                 count++; // Increment count for all numbers
+             }
+             else if (numberParityIncludeAll == AtEngineEnumFuncs::checkNumberParityIncludeAll(arr1[i])) {
+                 count++; // Increment count if it matches
+             }
+         }
+
+         return count; // Return the total count
+     }
 
 }
