@@ -30,7 +30,35 @@ namespace AtEngineEnumFuncs
         }
     };
 
-    // 2. Reads an operation type from the user
+    // 2. Checks if a number is odd, even, or indicates all numbers.
+    /**
+     * @brief Checks if a number is odd, even, or indicates all numbers.
+     *
+     * This function checks the parity of a number and can also be used to indicate that
+     * all numbers are included.
+     *
+     * @param Number The number to check.
+     * @param countAll If true, indicates that all numbers should be counted.
+     * @return enNumberParityIncludeAll::ALL if countAll is true,
+     *         enNumberParityIncludeAll::ODD if the number is odd,
+     *         enNumberParityIncludeAll::EVEN if the number is even.
+     */
+    AtEngineEnums::enNumberParityIncludeAll checkNumberParityIncludeAll(int Number, bool countAll = false) {
+        if (countAll) {
+            return AtEngineEnums::enNumberParityIncludeAll::ALL; // Indicates all numbers
+        }
+
+        // Check if the number is odd or even
+        if (Number % 2 != 0) {
+            return AtEngineEnums::enNumberParityIncludeAll::ODD;
+        }
+        else {
+            return AtEngineEnums::enNumberParityIncludeAll::EVEN;
+        }
+    }
+
+
+    // 3. Reads an operation type from the user
     /**
      * @brief Reads an operation type from the user.
      * @return enOperationType corresponding to the operation entered by the user.
@@ -43,7 +71,7 @@ namespace AtEngineEnumFuncs
         return (AtEngineEnums::enOperationType)ot;
     };
 
-    // 3. Checks if a number is prime or non-prime
+    // 4. Checks if a number is prime or non-prime
     /**
      * @brief Checks if a number is prime or non-prime.
      * @param number The number to check.
@@ -65,7 +93,7 @@ namespace AtEngineEnumFuncs
     
     };
 
-    // 4. Reads a day of the week as an enum value
+    // 5. Reads a day of the week as an enum value
     /**
      * @brief Reads a day of the week as an enum value.
      * @return enDayOfWeek corresponding to the integer input (1 for Sunday, 7 for Saturday).
@@ -75,7 +103,7 @@ namespace AtEngineEnumFuncs
         return (AtEngineEnums::enDayOfWeek) AtEngine::readIntegerOfRange(1, 7);
     }
 
-    // 5. Reads a month of the year as an enum value
+    // 6. Reads a month of the year as an enum value
     /**
      * @brief Reads a month of the year as an enum value.
      * @return enMonthOfYear corresponding to the integer input (1 for January, 12 for December).
@@ -85,7 +113,7 @@ namespace AtEngineEnumFuncs
         return (AtEngineEnums::enMonthOfYear)AtEngine::readIntegerOfRange(1, 12);
     }
 
-    // 6. Check if a number is a perfect number
+    // 7. Check if a number is a perfect number
     /**
      * @brief Determines if a number is perfect.
      * A perfect number is a positive integer that is equal to the sum of its proper positive divisors.
@@ -122,7 +150,7 @@ namespace AtEngineEnumFuncs
             AtEngineEnums::enPerfectNumberStatus::NOT_PERFECT;
     }
 
-    // 7. Check if a number is a palindrome
+    // 8. Check if a number is a palindrome
     /**
      * @brief Determines if a number is a palindrome.
      * A palindrome is a number that reads the same forwards and backwards.
