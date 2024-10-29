@@ -57,7 +57,6 @@ namespace AtEngineEnumFuncs
         }
     }
 
-
     // 3. Reads an operation type from the user
     /**
      * @brief Reads an operation type from the user.
@@ -165,5 +164,55 @@ namespace AtEngineEnumFuncs
     {
        return number == AtEngine::reverseNumber(number) ? AtEngineEnums::enPalindromeNumberStatus::PALINDROME : AtEngineEnums::enPalindromeNumberStatus::NOT_PALINDROME;
     }
+
+    // 9. Determine the sign of a number
+    /**
+     * @brief Determines if a number is positive or negative.
+     *
+     * This function checks the given number and returns its sign status as either
+     * POSITIVE or NEGATIVE based on its value. If the input is zero, the behavior
+     * is not defined, and it's recommended to avoid passing zero to this function.
+     *
+     * @param number The integer number to check.
+     * @return enNumberSign::POSITIVE if the number is greater than zero,
+     *         enNumberSign::NEGATIVE if the number is less than zero.
+     *
+     * @note This function does not handle the case of zero. It is advisable to
+     *       check the input number before calling this function to ensure valid results.
+     */
+    AtEngineEnums::enNumberSign checkNumberSign(int number)
+    {
+        if (number > 0) {
+            return AtEngineEnums::enNumberSign::POSITIVE;
+        }
+        else if (number < 0) {
+            return AtEngineEnums::enNumberSign::NEGATIVE;
+        }
+
+    }
+
+    // 10. Check the type of a number (Positive, Negative, or Zero)
+    /**
+     * @brief Checks if a number is positive, negative, or zero.
+     *
+     * This function checks the given number and returns its type as either
+     * POSITIVE, NEGATIVE, or ZERO based on its value.
+     *
+     * @param number The integer number to check.
+     * @return enNumberType::POSITIVE if the number is greater than zero,
+     *         enNumberType::NEGATIVE if the number is less than zero,
+     *         enNumberType::ZERO if the number is zero.
+     *
+     * @note This function covers all possible cases for integer values, allowing
+     *       it to distinguish between positive, negative, and zero.
+     */
+    AtEngineEnums::enNumberType checkNumberType(int number)
+    {
+        return number > 0 ? AtEngineEnums::enNumberType::POSITIVE
+            : number < 0 ? AtEngineEnums::enNumberType::NEGATIVE
+            : AtEngineEnums::enNumberType::ZERO;
+    }
+
+
 
 }
