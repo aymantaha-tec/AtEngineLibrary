@@ -1672,7 +1672,7 @@ namespace AtEngine
      * @param arrLength The number of elements in the array.
      * @return true if the array is a palindrome; otherwise, false.
      */
-     bool IsPalindromeArray(int arr[100], int arrLength) {
+     bool IsPalindromeArray(int arr[], int arrLength) {
          for (int i = 0; i < arrLength / 2; i++) {
              if (arr[i] != arr[arrLength - i - 1]) {
                  return false;
@@ -1711,5 +1711,132 @@ namespace AtEngine
 
          return count; // Return the total count
      }
+
+     // 76. Count Numbers by Sign
+     /**
+      * @brief Counts the numbers in an array based on their sign (positive or negative).
+      *
+      * This function counts the number of positive or negative numbers in the provided array
+      * based on the specified sign type. It can be used to count only positive or only negative numbers.
+      *
+      * @param arr1 The array of integers to check.
+      * @param arrLength The length of the array.
+      * @param numberSign The sign type to count (POSITIVE or NEGATIVE).
+      * @return The count of numbers matching the specified sign type.
+      */
+     int numberSignCountInArray(int arr1[], int arrLength, AtEngineEnums::enNumberSign numberSign = AtEngineEnums::enNumberSign::POSITIVE) {
+         int count = 0; // Initialize count to zero
+
+         // Iterate through the array
+         for (int i = 0; i < arrLength; i++) {
+             // Check if counting all numbers
+             if (numberSign == AtEngineEnumFuncs::checkNumberSign(arr1[i])) {
+                 count++; // Increment count for all numbers
+             }
+         }
+
+         return count; // Return the total count
+     }
+
+     // 77. Count Numbers by Type
+     /**
+      * @brief Counts the numbers in an array based on their type (positive, negative, etc.).
+      *
+      * This function counts the number of numbers in the provided array based on the specified
+      * type (such as positive or negative). It can be used to count only specific types of numbers.
+      *
+      * @param arr1 The array of integers to check.
+      * @param arrLength The length of the array.
+      * @param numberType The type of numbers to count (POSITIVE, NEGATIVE, etc.).
+      * @return The count of numbers matching the specified type.
+      */
+     int numberTypeCountInArray(int arr1[], int arrLength, AtEngineEnums::enNumberType numberType = AtEngineEnums::enNumberType::POSITIVE) {
+         int count = 0; // Initialize count to zero
+
+         // Iterate through the array
+         for (int i = 0; i < arrLength; i++) {
+             // Check if counting all numbers
+             if (numberType == AtEngineEnumFuncs::checkNumberType(arr1[i])) {
+                 count++; // Increment count for all numbers
+             }
+         }
+
+         return count; // Return the total count
+     }
+    
+     // 78. Computes the absolute value of a number
+     /**
+      * @brief Computes the absolute value of a floating-point number.
+      *
+      * This function returns the absolute value of the provided number.
+      * If the number is non-negative, it returns the number itself.
+      * If the number is negative, it returns the number multiplied by -1.
+      *
+      * @param Number The floating-point number for which to compute the absolute value.
+      * @return The absolute value of the given number.
+      */
+     float myAbs(float Number)
+     {
+         return (Number >= 0) ? Number : -Number;
+     }
+
+     // 79. Get the fractional part of a floating-point number
+     /**
+      * @brief Extracts the fractional part of a floating-point number.
+      *
+      * This function computes the fractional part of the provided number
+      * by subtracting its integer part from the number itself.
+      *
+      * @param Number The floating-point number from which to extract the fractional part.
+      * @return The fractional part of the given number.
+      */
+     float GetFractionPart(float Number)
+     {
+         return Number - static_cast<int>(Number); 
+     }
+
+     // 80. Rounds a floating-point number to the nearest integer
+     /**
+      * @brief Rounds a floating-point number to the nearest integer.
+      *
+      * This function takes a float number and rounds it to the nearest integer
+      * using standard rounding rules. If the fractional part is 0.5 or greater,
+      * it rounds up; otherwise, it rounds down.
+      *
+      * @param Number The floating-point number to round.
+      * @return The rounded integer value.
+      */
+     int myRound(float Number)
+     {
+         int intPart = static_cast<int>(Number); // Convert the number to its integer part
+         float fractionPart = GetFractionPart(Number); // Get the fractional part
+
+         // If the fractional part is greater than or equal to 0.5, round the number
+         if (myAbs(fractionPart) >= 0.5)
+         {
+             return (Number > 0) ? (intPart + 1) : (intPart - 1);
+         }
+
+         return intPart; // If not, return the integer part only
+     }
+
+     // 81. Computes the floor of a floating-point number
+     /**
+      * @brief Computes the largest integer less than or equal to a given floating-point number.
+      *
+      * This function returns the floor value of the provided floating-point number.
+      * If the number is positive, it truncates the decimal part. If the number is negative,
+      * it subtracts one from the integer part to account for the floor function.
+      *
+      * @param Number The floating-point number to process.
+      * @return The largest integer less than or equal to the provided number.
+      */
+     int MyFloor(float Number)
+     {
+         // Return the largest integer less than or equal to the given number
+         return (Number > 0) ? static_cast<int>(Number) : static_cast<int>(Number) - 1;
+     }
+
+
 
 }
