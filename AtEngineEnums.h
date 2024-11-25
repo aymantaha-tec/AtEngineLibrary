@@ -179,10 +179,11 @@ namespace AtEngineEnums
      */
     enum class enOperationType
     {
-        ADD = '+',        ///< Addition operation
-        SUBTRACT = '-',   ///< Subtraction operation
-        MULTIPLY = '*',   ///< Multiplication operation
-        DIVIDE = '/'      ///< Division operation
+        ADD = 1,        ///< Addition operation
+        SUBTRACT,    ///< Subtraction operation
+        MULTIPLY,   ///< Multiplication operation
+        DIVIDE,     ///< Division operation
+        MIXOP
     };
 
     // 15. Seasons of the Year
