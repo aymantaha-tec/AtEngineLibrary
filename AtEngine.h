@@ -278,6 +278,8 @@ namespace AtEngine
         return power;
     }
 
+    
+
     // 15. Reads an integer from user input within a specified range
     /**
      * @brief Reads an integer from user input until it is within a specified range.
@@ -285,10 +287,10 @@ namespace AtEngine
      * @param to The maximum acceptable value.
      * @return The number entered by the user that falls within the specified range.
      */
-    int readIntegerOfRange(int from, int to) {
+    int readIntegerOfRange(int from, int to, string message) {
         int number;
         while (true) {
-            cout << "Please enter an integer between " << from << " and " << to << ": ";
+            cout << message << " " << from << " To " << to << ": ";
             cin >> number;
 
             // Check if the input is valid
@@ -1790,7 +1792,7 @@ namespace AtEngine
       * @param Number The floating-point number from which to extract the fractional part.
       * @return The fractional part of the given number.
       */
-     float GetFractionPart(float Number)
+     float getFractionPart(float Number)
      {
          return Number - static_cast<int>(Number); 
      }
@@ -1809,7 +1811,7 @@ namespace AtEngine
      int myRound(float Number)
      {
          int intPart = static_cast<int>(Number); // Convert the number to its integer part
-         float fractionPart = GetFractionPart(Number); // Get the fractional part
+         float fractionPart = getFractionPart(Number); // Get the fractional part
 
          // If the fractional part is greater than or equal to 0.5, round the number
          if (myAbs(fractionPart) >= 0.5)
@@ -1831,12 +1833,127 @@ namespace AtEngine
       * @param Number The floating-point number to process.
       * @return The largest integer less than or equal to the provided number.
       */
-     int MyFloor(float Number)
+     int myFloor(float Number)
      {
          // Return the largest integer less than or equal to the given number
          return (Number > 0) ? static_cast<int>(Number) : static_cast<int>(Number) - 1;
      }
 
+     // 82. Custom implementation of the ceiling function
+     /**
+      * @brief Rounds up a floating-point number to the nearest integer.
+      *
+      * This function returns the smallest integer greater than or equal to the input number,
+      * replicating the behavior of the standard `ceil` function without using the standard library.
+      * If the number has a positive fractional part, it rounds up for positive numbers.
+      *
+      * @param Number The floating-point number to be rounded up.
+      * @return The smallest integer greater than or equal to `Number`.
+      */
+     int myCeil(float Number)
+     {
+         if (getFractionPart(Number) > 0) {
+             // If there's a positive fractional part, round up
+             return (Number > 0) ? static_cast<int>(Number) + 1 : static_cast<int>(Number);
+         }
+         else {
+             // If there's no fractional part, return the integer part as is
+             return static_cast<int>(Number);
+         }
+     }
+
+     // 83. Calculates the square root of a number
+     /**
+      * @brief Computes the square root of a given number.
+      *
+      * This function uses the pow function to calculate the square root by raising
+      * the number to the power of 0.5. While this method is valid, using a dedicated
+      * square root function like sqrt is generally more efficient.
+      *
+      * @param Number The number to calculate the square root for.
+      * @return The square root of the given number.
+      */
+     int mySqrt(float Number)
+     {
+         return pow(Number, 0.5);
+     }
+
+     // 84. Center Text in a Specified Width
+     /**
+      * @brief Centers a given text within a specified width by adding spaces on both sides.
+      *
+      * This function takes a string and centers it within a specified width by adding spaces
+      * to both sides of the text. If the width is less than or equal to the text length,
+      * it returns the original text without any modification. If the width minus the text
+      * length is odd, it adds an extra space after the text to ensure a balanced alignment.
+      *
+      * @param text The text string to center within the width.
+      * @param width The total width within which the text should be centered.
+      * @return A new string with the text centered and padded with spaces.
+      */
+     string centerText(const string& text, int width) {
+         int textLength = text.length();
+
+         if (textLength >= width) {
+             return text; // Return text if it's longer than or equal to the width
+         }
+
+         int padding = (width - textLength) / 2;
+         int extraSpace = (width - textLength) % 2; // Add an extra space if the difference is odd
+
+         // Return the text centered with padding spaces
+         return string(padding, ' ') + text + string(padding + extraSpace, ' ');
+     }
+
+     // 85. Clears the screen and resets the console color
+     /**
+      * @brief Clears the screen and resets the console color to default.
+      *
+      * This function clears the console screen using `system("cls")`
+      * and resets the console text and background color to default values
+      * using `system("color 0f")`.
+      * It is useful for refreshing the console environment during runtime.
+      */
+     void restScreen()
+     {
+         system("cls");          // Clears the console screen
+         system("color 0f");     // Resets the console color to black background and white text
+     }
+
+     // 86. Perform a simple arithmetic calculation
+     /**
+      * @brief Performs a simple calculation based on the operation type.
+      *
+      * This function takes two integers and an operation type from the
+      * AtEngineEnums::enOperationType enum to perform addition, subtraction,
+      * multiplication, or division.
+      *
+      * @param number1 The first integer operand.
+      * @param number2 The second integer operand.
+      * @param operationType The operation to be performed, defined in the
+      * AtEngineEnums::enOperationType enum.
+      * @return The result of the calculation as an integer. If the operation
+      * type is unrecognized, the function defaults to addition.
+      *
+      * @note Ensure that number2 is not zero when using the DIVIDE operation
+      * to avoid division by zero errors.
+      */
+     int simpleCalculate(int number1, int number2, AtEngineEnums::enOperationType operationType)
+     {
+         switch (operationType)
+         {
+         case AtEngineEnums::enOperationType::ADD:
+             return number1 + number2;
+         case AtEngineEnums::enOperationType::SUBTRACT:
+             return number1 - number2;
+         case AtEngineEnums::enOperationType::MULTIPLY:
+             return number1 * number2;
+         case AtEngineEnums::enOperationType::DIVIDE:
+             return number1 / number2;
+         default:
+             return number1 + number2;
+         }
+     }
 
 
 }
